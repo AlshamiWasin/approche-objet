@@ -1,4 +1,4 @@
-package tp05.fr.diginamic.banque.entites;
+package tp06.fr.diginamic.banque.entites;
 
 public class Compte {
 
@@ -25,4 +25,15 @@ public class Compte {
         this.numeroCompte = numeroCompte;
         this.soldeCompte = soldeCompte;
     }
+
+
+    @Override
+    public String toString() {
+        return "Compte{" +
+                "numeroCompte=" + numeroCompte +
+                ", soldeCompte=" + soldeCompte +
+                '}';
+    }
+
+
 }
