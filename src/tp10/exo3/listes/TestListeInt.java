@@ -29,7 +29,6 @@ public class TestListeInt {
         System.out.println("smallest : " +list.get(0));
 
         Iterator<Integer> iter = list.iterator();
-
         List<Integer> modifiedlist = new ArrayList<>();
 
         while(iter.hasNext()){
@@ -39,13 +38,10 @@ public class TestListeInt {
                 modifiedlist.add( Math.abs(number) );
             }
         }
-
         list.addAll(modifiedlist);
         Collections.sort(list);
 
-        for (Object o : list) {
-            System.out.println("list object : " + o);
-        }
+        System.out.println(list);
 
     }
 }
