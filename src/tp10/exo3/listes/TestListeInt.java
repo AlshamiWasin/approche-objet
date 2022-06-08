@@ -16,30 +16,30 @@ public class TestListeInt {
         list.add(8);
         list.add(5);
 
-        for (Object o : list) {
-            System.out.println("list object : " + o);
-        }
-
         System.out.println("size : " + list.size());
 
-        Collections.sort(list);
+        System.out.println("biggest : " +(Collections.max(list)));
 
-        System.out.println("biggest : " +list.get(list.size() - 1));
+        System.out.println("smallest : " +(Collections.min(list)));
 
-        System.out.println("smallest : " +list.get(0));
+        System.out.println(list);
 
-        Iterator<Integer> iter = list.iterator();
-        List<Integer> modifiedlist = new ArrayList<>();
+        for (Integer integer : list) {
+            if (integer < 0){
+                list.set(list.indexOf(integer), Math.abs(integer) );
+            }
+        }
+
+/*        Iterator<Integer> iter = list.iterator();
 
         while(iter.hasNext()){
             Integer number = iter.next();
             if (number < 0){
-                iter.remove();
-                modifiedlist.add( Math.abs(number) );
+                System.out.println(list.indexOf(number));
+                System.out.println(Math.abs(number));
+                list.set(list.indexOf(number), Math.abs(number) );
             }
-        }
-        list.addAll(modifiedlist);
-        Collections.sort(list);
+        }*/
 
         System.out.println(list);
 

@@ -21,7 +21,36 @@ public class TestListeString {
         list.add("Tarbes");
         list.add("Carcassonne");
 
-        Iterator<String> iter = list.iterator();
+        //Avec forEach
+
+        String word = "";
+
+        for (String s : list) {
+
+            int count = 0;
+
+            for (int i = 0; i < s.length(); i++) {
+                if (Character.isLetter(s.charAt(i)))
+                    count++;
+            }
+
+            if (word.length() < count){
+                word =s;
+            }
+        }
+
+        System.out.println(word);
+
+        for (String s : list) {
+            list.set(list.indexOf(s), s.toUpperCase() );
+        }
+        System.out.println(list);
+
+
+
+        //Avec iterator
+
+/*        Iterator<String> iter = list.iterator();
 
         String word = "";
 
@@ -51,7 +80,7 @@ public class TestListeString {
 
         }
 
-        System.out.println(list);
+        System.out.println(list);*/
 
         Iterator<String> iter3 = list.iterator();
 
