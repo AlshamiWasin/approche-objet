@@ -1,6 +1,7 @@
 package tp10.exo5;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -78,5 +79,9 @@ public class VilleArrayTest {
         for (Ville ville : listVille) {
             System.out.println(ville.nom);
         }
+
+        System.out.println(Collections.max(listVille));
+        System.out.println(Collections.min(listVille));
+
     }
 }

@@ -1,6 +1,6 @@
 package tp10.exo5;
 
-public class Ville {
+public class Ville implements Comparable<Ville>{
 
     String nom;
     Integer nbrHabitants;
@@ -25,5 +25,10 @@ public class Ville {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @Override
+    public int compareTo(Ville ville) {
+        return Integer.compare(this.nbrHabitants , ville.nbrHabitants);
     }
 }
