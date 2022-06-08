@@ -1,4 +1,4 @@
-package tp10.exo5;
+package tp12.exo4;
 
 public class Ville implements Comparable<Ville>{
 
