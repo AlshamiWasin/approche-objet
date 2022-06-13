@@ -1,44 +1,74 @@
 package tp_Reservation_En_Ligne;
 
+import tp_Reservation_En_Ligne.Logement.Appartement;
+import tp_Reservation_En_Ligne.Logement.Logement;
+import tp_Reservation_En_Ligne.Logement.Maison;
+import tp_Reservation_En_Ligne.Logement.Peniche;
+import tp_Reservation_En_Ligne.exception.AlreadyReservedBusinessException;
+import tp_Reservation_En_Ligne.exception.SurcapaciteBusinessException;
+import tp_Reservation_En_Ligne.service.ReservationService;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestAppartement {
 
-    public static void main(String[] args) {
+    static ArrayList<Logement> listLogement = new ArrayList<>();
+    static ReservationService reservationService = new ReservationService();
 
-        ArrayList<Appartement> listAppartement = new ArrayList<>();
+    public static void main(String[] args) throws AlreadyReservedBusinessException, SurcapaciteBusinessException {
 
-        Appartement appartement1 = new Appartement( " adresse 1 " , 10 , 1 , "1");
+        initData();
 
-        listAppartement.add(appartement1);
-        listAppartement.add(new Appartement( " adresse 2 " , 20 , 2 , "2"));
-        listAppartement.add(new Appartement( " adresse 3 " , 30 , 3 , "3"));
-        listAppartement.add(new Appartement( " adresse 4 " , 40 , 4 , "4"));
-        listAppartement.add(new Appartement( " adresse 5 " , 50 , 5 , "5"));
-
-
-        appartement1.reserverAppartement(10);
-        appartement1.reserverAppartement(1);
-        appartement1.reserverAppartement(1);
         /*appartement1.libererApparement();*/
 
         System.out.println("non reserved apartments");
 
-        for (Appartement appartement : listAppartement) {
-            if (appartement.reserver == false){
-                System.out.println(appartement.toString());
-            }
-        }
+        System.out.println(listerAppartementsDisponibles());
 
-        System.out.println("reserved apartments");
 
-        for (Appartement appartement : listAppartement) {
-            if (appartement.reserver == true){
-                System.out.println(appartement.toString());
-            }
-        }
+        reservationService.reserver(listLogement.get(0), 1);
+
+        System.out.println(listerAppartementsNonDisponibles());
+
+    }
+
+
+    private static void initData() {
+
+        Appartement appartement = new Appartement( " adresse 1 " , 10 , 1 , "1");
+        Maison maison = new Maison( " adresse 1 " , 10 , 1 , true);
+        Peniche peniche = new Peniche(" adresse 1 " , 10 , 1 , 100);
+
+        listLogement.add(appartement);
+        listLogement.add(maison);
+        listLogement.add(peniche);
 
 
     }
+
+
+    public static List<Logement> listerAppartementsDisponibles() {
+        List<Logement> appartementsDisponibles = new ArrayList<>();
+
+        for (Logement appartement : listLogement) {
+            if (!appartement.isReserver()) {
+                appartementsDisponibles.add(appartement);
+            }
+        }
+
+        return appartementsDisponibles;
+    }
+
+    public static List<Logement> listerAppartementsNonDisponibles() {
+        List<Logement> appartementsNonDisponibles = new ArrayList<>();
+        for (Logement appartement : listLogement) {
+            if (appartement.isReserver()) {
+                appartementsNonDisponibles.add(appartement);
+            }
+        }
+        return appartementsNonDisponibles;
+    }
+
 
 }
